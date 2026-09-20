@@ -36,6 +36,7 @@ export const nav = [
 
 export const ui = {
   skipIntro: "Click or press any key to enter",
+  introSkipLabel: "Skip intro",
   skipContent: "Skip to content",
   home: "WeDigi Games — home",
   mainNav: "Main",

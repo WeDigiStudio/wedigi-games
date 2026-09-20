@@ -1,53 +1,24 @@
 import { brand, ui } from "@/content/site";
-
-// Runs after the server-rendered curtain, independently of React or WebGL.
-const bootstrap = `(() => {
-  const root = document.documentElement;
-  const curtain = document.getElementById('cold-open');
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let played = false;
-  try { played = sessionStorage.getItem('wdg-intro-played') === '1'; } catch {}
-  if (!curtain || played || motion.matches) return;
-  root.dataset.intro = 'playing';
-  let timer;
-  const dismiss = () => {
-    delete root.dataset.intro;
-    try { sessionStorage.setItem('wdg-intro-played', '1'); } catch {}
-    clearTimeout(timer);
-    curtain.removeEventListener('click', dismiss);
-    window.removeEventListener('keydown', dismiss);
-    motion.removeEventListener('change', dismiss);
-  };
-  curtain.addEventListener('click', dismiss);
-  window.addEventListener('keydown', dismiss);
-  motion.addEventListener('change', dismiss);
-  timer = setTimeout(dismiss, 2200);
-})();`;
+import { introBootstrap } from "./intro-sequence.mjs";
+import styles from "./Intro.module.css";
 
 export function Intro() {
   return (
     <>
-      <div id="cold-open" className="cold-open" aria-hidden="true">
-        <div className="cold-open-haze" />
-        <div className="cold-open-bloom" />
-        <svg width="200" height="260" viewBox="0 0 200 260" className="cold-open-child">
-          <g fill="#030206">
-            <path d="M88 168 q-3 34 -5 62 q0 6 7 6 q6 0 6-6 q1-30 2-58 Z" />
-            <path d="M108 168 q4 33 7 61 q1 6 -6 7 q-6 0-7-6 q-2-30 -3-58 Z" />
-            <path d="M100 92 q-19 3 -20 26 q-1 26 4 52 q16 5 33 0 q6-27 4-53 q-2-22 -21-25 Z" />
-            <path d="M81 104 q-9 6 -11 28 q-2 20 0 34 q1 6 7 5 q5-1 4-7 q-2-14 0-30 q1-14 6-22 Z" />
-            <path d="M119 104 q9 7 11 29 q2 20 0 33 q-1 6 -7 5 q-5-1 -4-7 q2-14 0-29 q-1-14 -6-23 Z" />
-            <path d="M94 78 h12 v16 h-12 Z" />
-            <ellipse cx="100" cy="62" rx="27" ry="29" />
-          </g>
-          <g className="cold-open-eyes" fill="#fff8ec">
-            <circle cx="91" cy="60" r="3.2" />
-            <circle cx="109" cy="60" r="3.2" />
-          </g>
-        </svg>
-        <div className="cold-open-caption"><p>{brand.name}</p><p>{ui.skipIntro}</p></div>
+      <div id="cold-open" className={styles.overlay}>
+        <div className={styles.veil} aria-hidden="true" />
+        <div className={styles.mistFar} aria-hidden="true" />
+        <div className={styles.presence} aria-hidden="true">
+          {/* A partial, out-of-focus contour; its identity stays outside the frame. */}
+          <svg viewBox="0 0 600 1000" preserveAspectRatio="none">
+            <path fill="#020309" d="M185-100C151 24 238 53 216 148C198 204 131 188 92 282C42 403 97 467 56 563L-28 810L62 886L185 572C204 535 218 558 202 658L131 1090H473L420 676C405 580 438 538 469 621L535 839L628 800L534 440C519 332 480 217 388 193C340 176 374 98 348 43C321-11 290-28 300-100Z" />
+          </svg>
+        </div>
+        <div className={styles.mistNear} aria-hidden="true" />
+        <p className={styles.signature} aria-hidden="true">{brand.name}</p>
+        <button type="button" className={styles.skip} title={ui.skipIntro}>{ui.introSkipLabel}<span aria-hidden="true">↗</span></button>
       </div>
-      <script dangerouslySetInnerHTML={{ __html: bootstrap }} />
+      <script dangerouslySetInnerHTML={{ __html: introBootstrap }} />
     </>
   );
 }

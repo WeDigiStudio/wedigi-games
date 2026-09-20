@@ -1,0 +1,115 @@
+/* The real hero remains underneath from the first paint to the last frame. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  contain: layout paint;
+  transition: opacity 650ms ease, visibility 0s 650ms;
+}
+
+:global(html[data-intro]) .overlay {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
+  /* CSS independently unblocks the page if the bootstrap is interrupted. */
+  animation: failsafe 1ms 5900ms forwards;
+}
+
+.veil, .mistFar, .mistNear, .presence { position: absolute; pointer-events: none; }
+.veil { inset: 0; background: #08090f; opacity: .68; }
+.mistFar {
+  inset: -10% -20%;
+  opacity: .67;
+  background:
+    radial-gradient(ellipse 43% 20% at 20% 55%, #8e7e9866, transparent 95%),
+    radial-gradient(ellipse 40% 35% at 77% 63%, #9a81905c, transparent 90%),
+    radial-gradient(ellipse 60% 30% at 46% 90%, #7773877a, transparent 90%);
+}
+.mistNear {
+  inset: 4% -35% -25%;
+  opacity: .8;
+  background:
+    radial-gradient(ellipse 34% 24% at 28% 65%, #89798970, transparent 90%),
+    radial-gradient(ellipse 40% 24% at 68% 44%, #a7939a55, transparent 90%);
+  filter: blur(12px);
+}
+.presence {
+  left: 0;
+  top: -28svh;
+  width: max(74vw, 480px);
+  height: 156svh;
+  transform: translate3d(-110vw, 0, 0) rotate(-9deg);
+  opacity: 0;
+  filter: blur(15px);
+  will-change: transform, opacity;
+}
+.presence svg { width: 100%; height: 100%; overflow: visible; }
+.signature { position: absolute; left: 4.5vw; bottom: 35px; color: #c6bccb; font-size: 9px; letter-spacing: .23em; text-transform: uppercase; }
+.skip {
+  position: absolute;
+  right: 4.5vw;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 44px;
+  padding: 8px 0 8px 14px;
+  color: #e4dce8;
+  background: transparent;
+  border: 0;
+  font-size: 10px;
+  letter-spacing: .05em;
+}
+.skip:hover { color: #ffc46b; }
+.skip:focus-visible { outline: 2px solid #ffc46b; outline-offset: 5px; }
+
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .veil { animation: veilClears 3000ms ease both; }
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .mistFar { animation: farMistClears 3000ms cubic-bezier(.22,.6,.38,1) both; }
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .mistNear { animation: nearMistClears 3000ms cubic-bezier(.22,.6,.38,1) both; }
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .presence { animation: passingPresence 3000ms linear both; }
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .signature,
+:global(html:is([data-intro="playing"], [data-intro="releasing"])) .skip { animation: captionLeaves 3000ms ease both; }
+:global(html[data-intro="releasing"]) .overlay { opacity: 0; pointer-events: none; }
+
+/* Reveal the existing UI in place; neither it nor the canvas is remounted. */
+:global(html[data-intro="preparing"]):has(.overlay) :global(:is(.site-header, .hero-copy, .hero-footer, .hero-coordinate, .world-toggle)) {
+  opacity: 0;
+  animation: emergencyContent 1ms 5900ms forwards;
+}
+:global(html[data-intro="playing"]):has(.overlay) :global(.hero-copy) { animation: contentArrives 1050ms 1750ms both; }
+:global(html[data-intro="playing"]):has(.overlay) :global(:is(.site-header, .hero-footer, .hero-coordinate, .world-toggle)) { animation: contentArrives 900ms 2050ms both; }
+:global(html[data-intro="releasing"]):has(.overlay) :global(:is(.site-header, .hero-copy, .hero-footer, .hero-coordinate, .world-toggle)) {
+  opacity: 1;
+  transition: opacity 650ms ease;
+}
+
+@keyframes veilClears { 0% { opacity: .68; } 30% { opacity: .4; } 68% { opacity: .15; } 100% { opacity: 0; } }
+@keyframes farMistClears { 0% { opacity: .67; transform: translate3d(0,0,0); } 40% { opacity: .55; } 100% { opacity: 0; transform: translate3d(9%,-3%,0); } }
+@keyframes nearMistClears { 0% { opacity: .8; transform: translate3d(-3%,0,0); } 35% { opacity: .7; } 100% { opacity: 0; transform: translate3d(18%,5%,0); } }
+@keyframes passingPresence {
+  0% { transform: translate3d(-110vw,0,0) rotate(-9deg); opacity: 0; }
+  12% { opacity: .94; }
+  42% { transform: translate3d(6vw,3vh,0) rotate(-2deg); opacity: .98; }
+  63% { transform: translate3d(76vw,0,0) rotate(6deg); opacity: .9; }
+  82%, 100% { transform: translate3d(133vw,-2vh,0) rotate(11deg); opacity: 0; }
+}
+@keyframes contentArrives { from { opacity: 0; } to { opacity: 1; } }
+@keyframes captionLeaves { 0%, 55% { opacity: .85; } 88%, 100% { opacity: 0; } }
+@keyframes failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+@keyframes emergencyContent { to { opacity: 1; } }
+
+@media (max-width: 699px) {
+  .presence { width: 115vw; min-width: 0; top: -15svh; height: 135svh; filter: blur(10px); }
+  .signature { left: 25px; bottom: 34px; font-size: 8px; }
+  .skip { right: 25px; bottom: 22px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-intro]) .overlay { display: none; }
+  :global(html[data-intro]):has(.overlay) :global(:is(.site-header, .hero-copy, .hero-footer, .hero-coordinate, .world-toggle)) { opacity: 1 !important; animation: none !important; }
+}

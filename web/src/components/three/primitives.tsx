@@ -44,10 +44,19 @@ export function Lantern({ position, still }: { position: [number, number, number
   const glow = useGlowTexture();
   const swing = useRef<THREE.Group>(null);
   const light = useRef<THREE.PointLight>(null);
+  const presencePassedAt = useRef<number | null>(null);
+  useEffect(() => {
+    const onPresence = () => { presencePassedAt.current = performance.now(); };
+    window.addEventListener("wdg:intro-pass", onPresence);
+    return () => window.removeEventListener("wdg:intro-pass", onPresence);
+  }, []);
   useFrame(({ clock }) => {
     if (still) return;
-    if (swing.current) swing.current.rotation.z = Math.sin(clock.elapsedTime * .65) * .045;
-    if (light.current) light.current.intensity = 17 + Math.sin(clock.elapsedTime * 3.2) * 1.4;
+    const elapsed = presencePassedAt.current === null ? 100 : (performance.now() - presencePassedAt.current) / 1000;
+    const wake = Math.sin(elapsed * 8) * Math.exp(-elapsed * 1.7) * .19;
+    const dip = Math.exp(-Math.pow((elapsed - .12) / .18, 2)) * 4;
+    if (swing.current) swing.current.rotation.z = Math.sin(clock.elapsedTime * .65) * .045 + wake;
+    if (light.current) light.current.intensity = 17 + Math.sin(clock.elapsedTime * 3.2) * 1.4 - dip;
   });
   return <group position={position}>
     <mesh position={[0, 1.9, 0]} rotation-z={-.06}><boxGeometry args={[.14, 3.8, .17]} /><meshStandardMaterial color="#17121a" roughness={1} /></mesh>
