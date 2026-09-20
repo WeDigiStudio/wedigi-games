@@ -1,0 +1,16 @@
+{
+  "name": "wedigi-games",
+  "version": "0.1.0",
+  "description": "WeDigi Games — indie games label of WeDigi",
+  "scripts": {
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "start": "npm --prefix web run start",
+    "lint": "npm --prefix web run lint",
+    "test": "npm --prefix web run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true
+}

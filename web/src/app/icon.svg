@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="WeDigi Games">
+  <!--
+    Gopuram mark. The wordmark is unusable at favicon size, so the brand's
+    other motif carries it: a stepped Dravidian temple tower, which stays
+    legible down to 16px where fine detail would turn to mud.
+
+    Dark tile rather than an ember fill — ember means *light* in this system,
+    and a dark tile reads on both light and dark browser chrome.
+  -->
+  <rect width="64" height="64" rx="14" fill="#120C16"/>
+  <g fill="#FF761E">
+    <path d="M12 52 L12 44 L15.5 44 L15.5 36 L19 36 L19 28 L22.5 28 L22.5 20 L26 20 L26 12 L32 6 L38 12 L38 20 L41.5 20 L41.5 28 L45 28 L45 36 L48.5 36 L48.5 44 L52 44 L52 52 Z"/>
+    <rect x="8" y="52" width="48" height="5" rx="1.5"/>
+  </g>
+</svg>
