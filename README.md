@@ -46,9 +46,21 @@ From the repo root; proxies to `web/`. Serves on <http://localhost:3000>.
 
 ## Deploying
 
-Statically prerendered — both routes build to static content. Vercel is the
-path of least resistance for a Next app; Cloudflare Pages and Netlify also work.
-Build command `npm run build`, root directory `web`.
+Hosted on **Vercel**, connected to this GitHub repo. Pushes to `main` deploy to
+production; every other branch gets a preview URL.
+
+> **The Next.js app is in `web/`, not at the repo root.** Vercel's **Root
+> Directory** must be set to `web` (Settings → Build & Deployment → Root
+> Directory). Without it Vercel builds from the root — where `package.json`
+> only proxies to `web/` — finds no output, and serves `404: NOT_FOUND` on
+> every path while reporting a perfectly successful build. This is not fixable
+> from `vercel.json`; Root Directory is a project setting only.
+
+With that set, framework detection, build command and output directory are all
+automatic. No `vercel.json` is needed.
+
+Pages are statically prerendered, but the app is *not* a static export — see
+the note in `web/next.config.ts` before adding `output: "export"`.
 
 ---
 
