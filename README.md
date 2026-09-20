@@ -18,17 +18,18 @@ The indie games label of **WeDigi**.
 ```
 WeDigiGames/
 ├── BRAND.md              Brand system (read before touching design)
-├── web/                  The site
-│   ├── src/
-│   │   ├── app/          layout.tsx · page.tsx · globals.css (tokens)
-│   │   ├── components/   Intro · HeroScene · Kolam · Gopuram · Atmosphere · Motion · Chrome · SignupForm
-│   │   │   └── three/      Scene.tsx (composition, camera, fog) · primitives.tsx (gopuram, figure, lantern)
-│   │   └── content/
-│   │       └── site.ts   ← ALL copy, including every Tamil string
-│   └── public/
-│       ├── brand/        logo artwork
-│       └── atmos/        Project S frames (atmosphere use only)
-└── legacy/static-site/   The first static build, superseded. Safe to delete.
+├── HANDOFF-PROMPT.md     Self-contained brief for external 3D tooling
+└── web/                  The site
+    ├── src/
+    │   ├── app/          layout.tsx · page.tsx · globals.css (tokens) · icons
+    │   ├── components/   Intro · HeroScene · Kolam · Gopuram · Motion · Chrome · SignupForm
+    │   │   └── three/    Scene.tsx (composition, camera, fog) · primitives.tsx (gopuram, figure, lantern)
+    │   └── content/
+    │       └── site.ts   ← ALL copy, including every Tamil string
+    ├── tests/            intro bootstrap tests (npm run test)
+    └── public/
+        ├── brand/        logo artwork (cropped PNG + 2000×2000 original)
+        └── atmos/        Project S frames (atmosphere use only)
 ```
 
 **Every word on the site lives in `web/src/content/site.ts`.** Copy changes do
@@ -92,8 +93,9 @@ the note in `web/next.config.ts` before adding `output: "export"`.
 - **Motion must degrade.** Every animated component checks `useReducedMotion()`.
   The chosen style is flagged high accessibility risk; the static fallback is
   what makes it acceptable.
-- `web/` has its own git repo from `create-next-app`. If you want one repo for
-  the whole project, delete `web/.git` and init at the root.
+- The whole project is one git repo rooted here, pushed to
+  [WeDigiStudio/wedigi-games](https://github.com/WeDigiStudio/wedigi-games).
+  The nested repo `create-next-app` made inside `web/` has been removed.
 - Node is v20.16.0 here; some tooling wants ≥20.19. Builds pass, but expect
   `EBADENGINE` warnings until Node is bumped.
 - Python scripts on this machine need `py -3` from PowerShell — plain `python`

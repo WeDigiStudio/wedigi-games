@@ -49,7 +49,7 @@ in **`#FF761E`**, on transparency.
 This is the single most likely way to misuse the brand.
 
 - `web/public/brand/wedigi-games-logo.png` — cropped to content, 1376×462
-- `site/assets/brand/logo-source.webp` (in `legacy/`) — the 2000×2000 original,
+- `web/public/brand/logo-source.webp` — the 2000×2000 original,
   ~93% of which is empty canvas
 
 **Still needed:** an **SVG** master, and a **light-background variant** with the
