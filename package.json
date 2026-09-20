@@ -2,6 +2,9 @@
   "name": "wedigi-games",
   "version": "0.1.0",
   "description": "WeDigi Games — indie games label of WeDigi",
+  "workspaces": [
+    "web"
+  ],
   "scripts": {
     "dev": "npm --prefix web run dev",
     "build": "npm --prefix web run build",
