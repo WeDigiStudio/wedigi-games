@@ -222,7 +222,7 @@ html[data-intro="playing"] .cold-open { position: fixed; inset: 0; display: flex
   .project-topline { left: 25px; right: 25px; top: 25px; }
   .project-topline .micro-label { font-size: 7px; letter-spacing: .12em; }
   .project-title-block { left: 25px; right: 25px; bottom: 30px; }
-  .project-title-block h2 { font-size: clamp(80px, 20vw, 130px); margin-top: 18px; }
+  .project-title-block h2 { font-size: clamp(42px, 16vw, 110px); white-space: nowrap; margin-top: 18px; }
   .project-title-block .micro-label { font-size: 8px; }
   .project-caption { font-size: 7px; margin-top: 20px; }
   .project-details { grid-template-columns: 1fr; gap: 30px; padding-block: 35px 60px; }

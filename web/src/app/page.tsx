@@ -1,11 +1,12 @@
-import Image from "next/image";
 import { Arrow, Eyebrow, Logo, Nav } from "@/components/Chrome";
 import { HeroScene } from "@/components/HeroScene";
 import { Intro } from "@/components/Intro";
 import { Kolam } from "@/components/Kolam";
-import { Parallax, Reveal } from "@/components/Motion";
+import { Reveal } from "@/components/Motion";
 import { SignupForm } from "@/components/SignupForm";
-import { atmos, family, footer, hero, pillars, projectS, signup, story, ui } from "@/content/site";
+import { ProjectTeam } from "@/components/ProjectTeam";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { family, footer, hero, pillars, signup, story, ui } from "@/content/site";
 
 export default function Home() {
   return <>
@@ -35,22 +36,9 @@ export default function Home() {
         <Reveal><p className="threshold-aside">{story.aside}</p></Reveal>
       </section>
 
-      <section id="project-s" className="project-section">
-        <div className="project-world">
-          <Parallax speed={7} className="project-parallax"><Image src={atmos.projectS} alt="" fill sizes="100vw" className="project-image" /></Parallax>
-          <div className="project-shade" />
-          <div className="project-topline"><span className="micro-label">{projectS.index}</span><span className="micro-label"><span className="status-dot" />{projectS.eyebrow.en}</span></div>
-          <div className="project-title-block">
-            <Reveal><p className="micro-label">{projectS.descriptor}</p><h2>{projectS.title}<span className="project-asterisk" aria-hidden="true">✳</span></h2></Reveal>
-            <p className="project-caption">{projectS.status}</p>
-          </div>
-        </div>
-        <div className="project-details section-shell">
-          <Reveal><Eyebrow value={projectS.eyebrow} /><h3>{projectS.kicker}</h3></Reveal>
-          <Reveal delay={.1} className="project-description"><p>{projectS.body[0]}</p><p>{projectS.body[1]}</p><a href="#signup" className="text-link">{projectS.cta}<Arrow diagonal /></a></Reveal>
-          <dl className="project-meta">{projectS.meta.map((item) => <div key={item.k}><dt>{item.k}</dt><dd>{item.v}</dd></div>)}</dl>
-        </div>
-      </section>
+      <ProjectShowcase />
+
+      <ProjectTeam />
 
       <section id="studio" className="studio-section section-shell">
         <div className="studio-kolam" aria-hidden="true"><Kolam patternId="studio-kolam" /></div>

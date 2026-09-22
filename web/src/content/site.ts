@@ -70,7 +70,7 @@ export const story = {
 
 export const pillars = {
   eyebrow: { ta: "கைவினை", translit: "kaivinai", en: "What we are about" } as Eyebrow,
-  heading: "From a small corner of the world. For the worlds inside us.",
+  heading: "From a small corner of the world.",
   intro: "We’re WeDigi Games, an independent studio from South India. We follow the strange ideas. Obsess over the small things. And make every moment mean something.",
   items: [
     {
@@ -92,6 +92,8 @@ export const pillars = {
 };
 
 export const projectS = {
+  poster: "/atmos/Project S - Official Announcement Poster.png",
+  posterAlt: "Project S official announcement poster: a child in silhouette beside a lantern and a burning village. Game in production for Steam and PC.",
   eyebrow: { ta: "கதை", translit: "kathai", en: "In production" } as Eyebrow,
   title: "Project S",
   kicker: "Some things are waiting in the dark.",
@@ -109,6 +111,28 @@ export const projectS = {
     { k: "Release", v: "To Be Announced" },
   ],
   status: "Work in progress",
+};
+
+export type TeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  photo: string | null;
+  photoPosition?: string;
+};
+
+export const projectTeam = {
+  label: "The people behind the world",
+  heading: "The Team behind Project S",
+  description: "Together, we bring the unknown to life.",
+  portraitPlaceholder: "Portrait coming soon",
+  // Replace these placeholders with names, roles and local /team/ photo paths.
+  members: [
+    { id: "01", name: "Mohammed Arshad Ismail", role: "Lead Programmer", photo: "/atmos/Mohammed Arshad Ismail.jpeg" },
+    { id: "02", name: "Naveen K", role: "Environment Artist", photo: "/atmos/Naveen.jpeg" },
+    { id: "03", name: "Prince Rohith A", role: "Junior Programmer", photo: "/atmos/Prince Rohith.jpeg" },
+    { id: "04", name: "Team member 04", role: "Role to be announced", photo: null },
+  ] as TeamMember[],
 };
 
 export const family = {
