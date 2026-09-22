@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Anek_Latin, Anek_Tamil, Inter } from "next/font/google";
-import { brand } from "@/content/site";
+import { brand, seo } from "@/content/site";
 import "./globals.css";
 
 /**
@@ -26,19 +26,44 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Share images come from the file convention: app/opengraph-image.jpg and
+ * app/twitter-image.jpg (1200×630, built from the Project S poster), with alt
+ * text alongside. `metadataBase` turns them into the absolute URLs social
+ * platforms require.
+ */
 export const metadata: Metadata = {
-  title: `${brand.name} — ${brand.tagline}`,
-  description: brand.description,
+  metadataBase: new URL(brand.url),
+  title: {
+    default: seo.title,
+    template: `%s | ${brand.name}`,
+  },
+  description: seo.description,
+  keywords: seo.keywords,
+  applicationName: brand.name,
+  authors: [{ name: brand.name, url: brand.url }],
+  creator: brand.name,
+  publisher: brand.parent,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: brand.name,
-    description: brand.description,
     type: "website",
+    url: "/",
+    siteName: brand.name,
+    title: seo.title,
+    description: seo.description,
+    locale: seo.locale,
   },
   twitter: {
     card: "summary_large_image",
-    title: brand.name,
-    description: brand.description,
+    title: seo.title,
+    description: seo.description,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  category: "games",
 };
 
 export const viewport: Viewport = {

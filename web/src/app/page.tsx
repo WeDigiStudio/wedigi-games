@@ -6,10 +6,12 @@ import { Reveal } from "@/components/Motion";
 import { SignupForm } from "@/components/SignupForm";
 import { ProjectTeam } from "@/components/ProjectTeam";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { StructuredData } from "@/components/StructuredData";
 import { family, footer, hero, pillars, signup, story, ui } from "@/content/site";
 
 export default function Home() {
   return <>
+    <StructuredData />
     <Intro />
     <a href="#main" className="skip-link">{ui.skipContent}</a>
     <Nav />

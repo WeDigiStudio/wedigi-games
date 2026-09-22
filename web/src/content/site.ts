@@ -26,6 +26,30 @@ export const brand = {
   tagline: "Small, hand-built games from South India.",
   description:
     "WeDigi Games is the indie games label of WeDigi. We build small, atmospheric games rooted in South Indian myth, light and landscape.",
+  /** Canonical origin. Every absolute URL in metadata, sitemap and structured data derives from this. */
+  url: "https://wedigigames.com",
+  email: "contact@wedigistudio.com",
+};
+
+/** Search and social metadata. Title and description are what appear in Google results. */
+export const seo = {
+  title: "WeDigi Games — Indie Game Studio from South India | Project S",
+  description:
+    "WeDigi Games is an independent game studio from South India making small, atmospheric games rooted in Tamil folklore. Our first game, Project S, is in production for Steam and PC.",
+  keywords: [
+    "WeDigi Games",
+    "Project S",
+    "indie game studio",
+    "South Indian game studio",
+    "Tamil game",
+    "Tamil folklore game",
+    "Indian indie games",
+    "atmospheric adventure game",
+    "2.5D adventure",
+    "Steam game",
+  ],
+  ogImageAlt: "WeDigi Games — Project S official announcement poster: a child in silhouette beside a lantern and a burning village.",
+  locale: "en_IN",
 };
 
 export const nav = [
