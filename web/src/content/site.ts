@@ -131,7 +131,7 @@ export const projectTeam = {
     { id: "01", name: "Mohammed Arshad Ismail", role: "Lead Programmer", photo: "/atmos/Mohammed Arshad Ismail.jpeg" },
     { id: "02", name: "Naveen K", role: "Environment Artist", photo: "/atmos/Naveen.jpeg" },
     { id: "03", name: "Prince Rohith A", role: "Junior Programmer", photo: "/atmos/Prince Rohith.jpeg" },
-    { id: "04", name: "Team member 04", role: "Role to be announced", photo: null },
+    { id: "04", name: "Nitish", role: "Level Designer", photo: "/atmos/Nitish.jpeg" },
   ] as TeamMember[],
 };
 
