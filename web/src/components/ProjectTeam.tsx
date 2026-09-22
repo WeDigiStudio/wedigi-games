@@ -16,7 +16,7 @@ export function ProjectTeam() {
       {projectTeam.members.map((member, index) => <Reveal key={member.id} delay={index * .07}>
         <article className={styles.card}>
           <div className={styles.portrait}>
-            {member.photo ? <Image src={member.photo} alt={`Portrait of ${member.name}`} fill sizes="(max-width: 519px) 90vw, (max-width: 1000px) 44vw, 22vw" style={{ objectPosition: member.photoPosition ?? "50% 35%" }} /> : <div className={styles.placeholder}>
+            {member.photo ? <Image src={member.photo} alt={`Portrait of ${member.name}`} fill sizes="(max-width: 519px) 45vw, (max-width: 1000px) 44vw, 22vw" style={{ objectPosition: member.photoPosition ?? "50% 35%" }} /> : <div className={styles.placeholder}>
               <svg viewBox="0 0 240 300" aria-hidden="true"><ellipse cx="120" cy="115" rx="35" ry="44" /><path d="M38 300v-44c0-49 32-77 82-77s82 28 82 77v44Z" /></svg>
               <span>{projectTeam.portraitPlaceholder}</span>
             </div>}
