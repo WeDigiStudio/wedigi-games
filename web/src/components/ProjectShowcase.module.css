@@ -12,6 +12,9 @@
 .meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 38px 0 0; padding-top: 25px; border-top: 1px solid var(--color-line); }
 .meta dt { color: var(--color-muted); font-size: 8px; letter-spacing: .15em; text-transform: uppercase; }
 .meta dd { margin: 6px 0 0; font-size: 12px; }
+.supportingStudio { display: flex; align-items: center; gap: 28px; margin-top: 31px; padding-top: 25px; border-top: 1px solid var(--color-line); }
+.supportingStudio span { flex: 0 0 auto; color: var(--color-muted); font-size: 8px; letter-spacing: .15em; text-transform: uppercase; }
+.supportingStudio img { display: block; width: auto; height: 28px; object-fit: contain; }
 @media (max-width: 699px) {
   .section { padding-block: 25px 55px; }
   .topline { margin-bottom: 24px; }
@@ -22,4 +25,6 @@
   .story h3 { font-size: 40px; max-width: 350px; }
   .body { margin-top: 20px; }
   .meta { margin-top: 30px; }
+  .supportingStudio { justify-content: space-between; gap: 20px; }
+  .supportingStudio img { max-width: 55%; height: auto; max-height: 25px; }
 }

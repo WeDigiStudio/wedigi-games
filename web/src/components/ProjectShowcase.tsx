@@ -18,6 +18,10 @@ export function ProjectShowcase() {
         <div className={styles.body}>{projectS.body.map(text => <p key={text}>{text}</p>)}</div>
         <a href="#signup" className="button button-light">{projectS.cta}<Arrow diagonal /></a>
         <dl className={styles.meta}>{projectS.meta.map(item => <div key={item.k}><dt>{item.k}</dt><dd>{item.v}</dd></div>)}</dl>
+        <div className={styles.supportingStudio}>
+          <span>Supporting studio</span>
+          <Image src="/brand/supporting-studio-logo.webp" alt="Supporting studio" width={265} height={56} />
+        </div>
       </div>
     </div>
   </section>;
